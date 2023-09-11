@@ -20,6 +20,8 @@ if __name__ == '__main__':
             #timestamp, num, delta, err
             t = get_time(row[0])
             data[t] = row[1:]
+            if data[t][1]:
+                data[t][1] = float(data[t][1].split(':')[-1])
             
         csvfile.close()
     
