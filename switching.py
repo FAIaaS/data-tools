@@ -10,7 +10,6 @@ if __name__ == '__main__':
         print("Usage: %s csv erros.csv" % sys.argv[0])
         sys.exit(-1)
 
-    #column1 = 1
     err_column = 3
     with open(sys.argv[2], newline='') as csvfile:
         reader = csv.reader(csvfile)
@@ -35,7 +34,6 @@ if __name__ == '__main__':
                     threshold = table[i]['mean'] - table[i]['dev']
                     if val > threshold:
                         vote += 1
-            #print("vote=%d state=%d" % (len(table.keys())/2, state))
             if vote >= len(table.keys())/2:
                 if state:
                     print("%s -- OFF" % time)

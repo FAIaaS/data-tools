@@ -15,7 +15,6 @@ if __name__ == '__main__':
 
     url = sys.argv[1]
     limit = sys.argv[2]
-    #file = "/data/work/sadov/LastCloud.AI/kolla-ansible/measurements.csv"
     file = sys.argv[3]
     
     num = 0
@@ -27,11 +26,9 @@ if __name__ == '__main__':
     for i in range(0,int(limit)):
         try:
             t1=datetime.datetime.now()
-            #requests.get('http://172.16.0.79:8000/')
             requests.get(url)
             t2=datetime.datetime.now()
             num += 1
-            #print("delta=%s\n" % (t2-t1))
             delta += t2-t1
             time.sleep(0.2)
         except urllib3.exceptions.MaxRetryError:

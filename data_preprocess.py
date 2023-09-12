@@ -41,19 +41,16 @@ if __name__ == '__main__':
             
             if t in data:
                 tx,rx,app_tx,app_rx = row[3:]
-                #print(row[3:])
                 data[t].extend(row[1:3])
-                #data[t].append(row[2])
                 data[t].extend([(int(tx) - int(txp))/dt,
                                 (int(rx) - int(rxp))/dt,
+                                # Just a durty fix of EVE app's Rx/Tx permutation
                                 #(int(app_tx) - int(app_txp))/dt,
                                 #(int(app_rx) - int(app_rxp))/dt,
                                 (int(app_rx) - int(app_rxp))/dt,
                                 (int(app_tx) - int(app_txp))/dt,
                                 ])
                 txp,rxp,app_txp,app_rxp = tx,rx,app_tx,app_rx
-            #else:
-            #    print("not in msr: " + t)
 
         csvfile.close()
 
@@ -68,12 +65,8 @@ if __name__ == '__main__':
                 row = [t,]
                 row.extend(data[t])
                 writer.writerow(row)
-                #print(row)
-            #else:
-                #print("not in eden: " + t)
 
         csvfile.close()
     
-    #print(data)
 
         

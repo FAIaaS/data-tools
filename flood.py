@@ -17,7 +17,6 @@ while 1:
         t2 = datetime.datetime.now()
         if wait < (t2-t1):
             sys.exit()
-        #requests.get('http://172.16.0.79:8000/')
         requests.get(sys.argv[1])
     except urllib3.exceptions.MaxRetryError:
         pass

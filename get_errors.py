@@ -10,7 +10,6 @@ if __name__ == '__main__':
         print("Usage: %s csv column" % sys.argv[0])
         sys.exit(-1)
 
-    #column1 = 1
     column1 = 3
     column2 = int(sys.argv[2])
     with open(sys.argv[1], newline='') as csvfile:

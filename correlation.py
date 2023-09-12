@@ -10,7 +10,6 @@ if __name__ == '__main__':
         print("Usage: %s csv column" % sys.argv[0])
         sys.exit(-1)
 
-    #column1 = 1
     column1 = 3
     column2 = int(sys.argv[2])
     with open(sys.argv[1], newline='') as csvfile:
@@ -21,8 +20,8 @@ if __name__ == '__main__':
         name1= header[column1]
         name2= header[column2]
         for row in reader:
-            #timestamp, num, delta, err
             if row[column2]:
+                #timestamp, num, delta, err
                 data1.append(float(row[column1]))
                 data2.append(float(row[column2]))
             

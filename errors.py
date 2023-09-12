@@ -30,8 +30,7 @@ if __name__ == '__main__':
         csvfile.close()
 
     print("%s\n good: %f ± %f, error: %f ± %f" % (
-        name,numpy.mean(good),numpy.std(good),numpy.mean(err),numpy.std(err))
-          )
+        name,numpy.mean(good),numpy.std(good),numpy.mean(err),numpy.std(err)))
     
 
 
