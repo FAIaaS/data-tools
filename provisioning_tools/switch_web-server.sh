@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Kill existing switch_web-server.sh process
+if [ -f /tmp/switch_web-server.pid ]
+then
+	        kill `cat /tmp/switch_web-server.pid`
+fi
+
+echo $$ > /tmp/switch_web-server.pid
+
 TMP=`mktemp /tmp/switch_web-server.XXXXXXXXXX`
 CURL='curl -q -m 10'
 source /etc/kolla/admin-openrc.sh 
@@ -25,6 +33,8 @@ web-server() {
 	echo web-server unavailable
 	return 1
 }
+
+#web-server http://web-server:8000
 
 echo openstack server start $2
 openstack server start $2

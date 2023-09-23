@@ -24,7 +24,6 @@ def select_server(row):
 def get_crontab(df, cmd):
     crontab = []
     cur = None
-    begin = 0
 
     for min in df.index:
         srv = df.iloc[min]['server']
