@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eve_adps"
+version = "0.0.1"
+authors = [
+  { name="Oleg Sadov", email="oleg.sadov@gmail.com" },
+]
+description = "OpenStack EVE-OS anomaly detection and proactive provisioning system"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache License",
+    "Operating System :: OS Independent",
+]
+dependencies = ['numpy', 'scipy', 'pandas', 'flask']
+
+[project.scripts]
+adps_analysis = "eve_adps.analysis:main"
+adps_anomaly_detector = 'eve_adps.anomaly_detector:main'
+adps_bandwidth = 'eve_adps.bandwidth:main'
+adps_clean = 'eve_adps.clean:main'
+adps_eden_diag = 'eve_adps.eden_diag:main'
+adps_flood = 'eve_adps.flood:main'
+adps_join = 'eve_adps.join:main'
+adps_measure = 'eve_adps.measure:main'
+adps_smooth = 'eve_adps.smooth:main'
+adps_switcher = 'eve_adps.switcher:main'
+adps_time_patterns = 'eve_adps.time_patterns:main'
+adps_time_select = 'eve_adps.time_select:main'
+adps_time_table = 'eve_adps.time_table:main'
+
+[project.urls]
+"Homepage" = "https://github.com/FAIaaS/data-tools"
+"Bug Tracker" = "https://github.com/FAIaaS/data-tools/issues"

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Measuring web server availability"""
 
 import requests
 import datetime
@@ -8,7 +9,7 @@ import time
 import csv
 from filelock import FileLock
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) < 3:
         print("Usage: %s url num_of_queries" % sys.argv[0])
         sys.exit(-1)
@@ -30,7 +31,7 @@ if __name__ == '__main__':
             t2=datetime.datetime.now()
             num += 1
             delta += t2-t1
-            time.sleep(0.2)
+            time.sleep(0.5)
         except urllib3.exceptions.MaxRetryError:
             err += 1
         except requests.exceptions.ConnectionError:
@@ -53,3 +54,6 @@ if __name__ == '__main__':
             writer = csv.writer(csvfile)
             writer.writerow([timestamp, num, delta, err])
             csvfile.close()
+
+if __name__ == '__main__':
+    main()

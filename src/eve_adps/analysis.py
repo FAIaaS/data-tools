@@ -1,16 +1,22 @@
 #!/usr/bin/env python
 # coding: utf-8
+"""Data analyzer
+
+Preparation for analysis and analysis of the combined data from measuring parameters of Edge nodes and monitoring web services. The result is a CSV file with the binarization limits of the measured parameters for the Edge node.
+"""
 
 import pandas as pd
 import numpy as np
 
-def prepare(df, columns):
+def prepare(df):
+    """Prepare for analysis"""
     df['Time'] = pd.to_datetime(df.Time)
     df['unavailable'] = df['Successful attempts'] < 5
 
     return df
 
 def get_limits(dfi, columns):
+    """Generate CSV file with the binarization limits of the measured parameters for the Edge node."""
     limits={'measurements':[
         'access_mean','access_std_deviation','access_level',
         'errors_mean','errors_std_deviation','errors_level']}
@@ -34,6 +40,7 @@ def get_limits(dfi, columns):
     return limits
 
 def limits_cmp(dfi, limits):
+    """Function for comparing the correspondence between different levels of binarization and unavailability status."""
     # Sucessfull accesss
     dfr = pd.DataFrame()
     dfr['Time']=dfi['Time']
@@ -62,7 +69,7 @@ def limits_cmp(dfi, limits):
         length = len(dfr[(dfr['unavailable'] != dfr[field])])
         print(f"{field}: {length} ({length/(size/100)}%)")
 
-if __name__ == '__main__':
+def main():
     import sys
     
     if len(sys.argv) < 4:
@@ -71,7 +78,7 @@ if __name__ == '__main__':
 
     df = pd.read_csv(sys.argv[1])
     columns = sys.argv[3:]
-    dfi = prepare(df, columns)
+    dfi = prepare(df)
 
     limits = get_limits(dfi, columns)
     if limits:
@@ -85,3 +92,6 @@ if __name__ == '__main__':
         print(f"Limits saved to file {name}")
 
         #limits_cmp(dfi, limits)
+        
+if __name__ == '__main__':
+    main()

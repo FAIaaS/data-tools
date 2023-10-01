@@ -1,1 +1,0 @@
-../measure_tools/edge_time_table.sh
